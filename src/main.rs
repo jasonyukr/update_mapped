@@ -27,7 +27,7 @@ fn main() {
             let ln = line.trim();
             if let Some(i) = ln.find('\t') {
                 let key = (&ln[..i]).to_string();
-                let val = (&ln[i..]).to_string();
+                let val = (&ln[i+1..]).to_string();
                 map.insert(key, val);
             }
         }
