@@ -92,7 +92,7 @@ fn main() -> io::Result<()> {
     for line_data in stdin.lock().lines() {
         if let Ok(line) = line_data {
             let ln = line.trim();
-            
+
             let mut path_disp = ln;
             if target_dir.len() > 0 && !target_dir.eq("/") {
                 if !ln.starts_with(&target_dir) {
@@ -100,6 +100,16 @@ fn main() -> io::Result<()> {
                 } else {
                     path_disp = &ln[target_dir.len()..];
                 }
+            }
+
+            if !Path::new(ln).exists() {
+                // print in red for file-not-found case
+                let res = writeln!(stdout, "\x1b[31m{}\x1b[0m", path_disp);
+                match res {
+                    Ok(_) => (),
+                    Err(_e) => { process::exit(1) },
+                }
+                continue;
             }
 
             let res;
