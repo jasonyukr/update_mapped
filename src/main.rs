@@ -103,11 +103,9 @@ fn main() -> io::Result<()> {
             }
 
             if !Path::new(ln).exists() {
-                // print in red for file-not-found case
-                let res = writeln!(stdout, "\x1b[31m{}\x1b[0m", path_disp);
-                match res {
-                    Ok(_) => (),
-                    Err(_e) => { process::exit(1) },
+                // print in orange for file-not-found case
+                if let Err(_) = writeln!(stdout, "\x1b[38;2;255;165;0m{}\x1b[0m", path_disp) {
+                    process::exit(1);
                 }
                 continue;
             }
