@@ -5,6 +5,10 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+default = ["nu-ansi-term"]
+gnu_legacy = ["nu-ansi-term/gnu_legacy"]
+
 [dependencies]
 clap = "2"
 lscolors = "0.20.0"
