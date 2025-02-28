@@ -23,7 +23,7 @@ fn print_lscolor_path_linenum(handle: &mut dyn Write, ls_colors: &LsColors, path
         }
     }
     if linenum.len() > 0 {
-        writeln!(handle, "\t\x1b[30m{}\x1b[0m", linenum)?;
+        writeln!(handle, "\t\x1b[38;2;90;90;90m{}\x1b[0m", linenum)?;
     } else {
         writeln!(handle)?;
     }
