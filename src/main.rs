@@ -124,9 +124,8 @@ fn main() -> io::Result<()> {
                     res = writeln!(&mut stdout, "{}", path_disp);
                 }
             }
-            match res {
-                Ok(_) => (),
-                Err(_e) => { process::exit(1) },
+            if let Err(_) = res {
+                process::exit(1);
             }
         }
     }
